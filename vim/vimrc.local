@@ -1,0 +1,82 @@
+"" I use this with spf13
+"use system clipboard
+set clipboard=unnamedplus "linux
+
+let mapleader = " "
+
+"new tab
+nnoremap <leader>t :tabnew<CR>
+"delete current buffer
+nnoremap <leader>d :bdelete<CR>
+
+
+"Ctrl+S to save
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
+
+"useful(important) maps
+nnoremap ; :
+nnoremap : :
+inoremap jj <Esc>
+
+set wrap
+"autocmd BufEnter * silent! lcd %:p:h
+set autochdir
+let NERDTreeChDirMode=2
+nnoremap <leader>n :NERDTree .<CR>
+
+"This unsets the "last search pattern" register by hitting return
+"nnoremap <CR> :noh<CR><CR>
+
+set nohlsearch
+
+set nospell
+
+" hide line no.s
+set nu!
+
+set guifont=DejaVu\ Sans\ Mono\ 10
+"set guifont=Monaco\ 10
+"set guifont=Inconsolata\ Medium\ 12
+"set guifont=Fira\ Mono\ 10
+
+
+"colo twilight
+"colo codeschool
+"colo zenburn
+"colo manuscript
+"colo slate
+"colo kiwi
+"colo earthsong
+"colo shrek
+"colo slime
+"colo solarized
+"set background=light
+"colo clarity
+"colo desertEx
+colo colorsbox-material
+
+
+    let g:syntastic_mode_map = { 'mode': 'passive',
+                               \ 'active_filetypes': [],
+                               \ 'passive_filetypes': [] }
+"Open CtrlP with MRU mode
+nnoremap <F5> :CtrlPMRUFiles<CR>
+
+" minimalistic, distraction free coding
+set guioptions=
+
+" are these lines really needed ?
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+"very basic statusline
+set laststatus=0
+
+" In absence of spf13, 
+" for tabswitching
+"nnoremap L gt<CR>
+"noremap H gT<CR>

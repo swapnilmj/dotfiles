@@ -1,0 +1,6 @@
+alias ll='ls -lhtr'
+alias newest='ls -t | head -1'
+alias o='less'
+
+#Python
+alias pyact='. bin/activate'
