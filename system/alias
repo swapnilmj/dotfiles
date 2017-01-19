@@ -4,3 +4,9 @@ alias o='less'
 
 #Python
 alias pyact='. bin/activate'
+
+#Git
+alias g='git '
+alias gd='git diff '
+alias gst='git status '
+alias gcom='git commit -am '
