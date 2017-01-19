@@ -1,4 +1,5 @@
 *~
 *.pyc
+.*.swp
 node_modules
 bower_components

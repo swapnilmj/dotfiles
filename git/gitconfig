@@ -3,6 +3,7 @@
 	name = <name>
 [core]
 	quotepath = false
+	excludesfile = ~/.gitignore_global
 [diff]
     tool = meld
 [merge]
