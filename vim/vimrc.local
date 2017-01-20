@@ -1,3 +1,24 @@
+set nocompatible              " be iMproved, required
+"" Vundle stuff
+filetype off                  " required
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
+	Plugin 'VundleVim/Vundle.vim'
+	"Add your bundles here
+	Plugin 'Syntastic' "uber awesome syntax and errors highlighter
+	Plugin 'chriskempson/base16-vim'
+
+
+call vundle#end() 
+"must be last
+
+filetype plugin indent on " load filetype plugins/indent settings
+"""""""""""""
+
+"
+"
+"
+"
 "" I use this with spf13
 "use system clipboard
 set clipboard=unnamedplus "linux
@@ -55,7 +76,8 @@ set guifont=DejaVu\ Sans\ Mono\ 10
 "set background=light
 "colo clarity
 "colo desertEx
-colo colorsbox-material
+"colo colorsbox-material
+colo desert
 
 
     let g:syntastic_mode_map = { 'mode': 'passive',
