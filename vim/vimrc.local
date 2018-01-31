@@ -1,23 +1,5 @@
 set nocompatible              " be iMproved, required
-"" Vundle stuff
-filetype off                  " required
-set rtp+=~/.vim/bundle/vundle/
-call vundle#begin()
-	Plugin 'VundleVim/Vundle.vim'
-	"Add your bundles here
-	Plugin 'Syntastic' "uber awesome syntax and errors highlighter
-	Plugin 'chriskempson/base16-vim'
 
-
-call vundle#end() 
-"must be last
-
-filetype plugin indent on " load filetype plugins/indent settings
-"""""""""""""
-
-"
-"
-"
 "
 "" I use this with spf13
 "use system clipboard
@@ -30,11 +12,25 @@ nnoremap <leader>t :tabnew<CR>
 "delete current buffer
 nnoremap <leader>d :bdelete<CR>
 
+" FuGitive
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
+
+"Mirror plugin shortcuts
+nnoremap <leader>M :MirrorPull<CR>
+nnoremap <leader>m :MirrorPush<CR>
+
+
+nnoremap <leader>l :Limelight!<CR>
 
 "Ctrl+S to save
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
+
+nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
+noremap <leader>w :update<CR>
 
 "useful(important) maps
 nnoremap ; :
@@ -47,6 +43,8 @@ set autochdir
 let NERDTreeChDirMode=2
 nnoremap <leader>n :NERDTree .<CR>
 
+let g:pymode_lint = 0
+
 "This unsets the "last search pattern" register by hitting return
 "nnoremap <CR> :noh<CR><CR>
 
@@ -55,29 +53,52 @@ set nohlsearch
 set nospell
 
 " hide line no.s
-set nu!
+set nonu
+set linespace=1
 
-set guifont=DejaVu\ Sans\ Mono\ 10
-"set guifont=Monaco\ 10
+set guifont=DejaVu\ Sans\ Mono\ 9
 "set guifont=Inconsolata\ Medium\ 12
 "set guifont=Fira\ Mono\ 10
+"set guifont=Liberation\ Mono\ 9
+
+"guifont=Source Code Pro Medium 10
+
+if has('gui_running')
+    "colo twilight
+    "colo codeschool
+    "colo zenburn
+    "colo zazen
+    "colo manuscript
+    "colo slate
+    "colo kiwi
+    "colo earthsong
+    "colo shrek
+    "colo slime
+    "colo solarized
+    "set background=light
+    "colo clarity
+    "colo desertEx
+    "colo colorsbox-material
+    "colo colorsbox-stnight
+    "colo desert
+    "colo mustang
+    "colo twilight
+    "colo hybrid
+    colo Tomorrow-Night
+    "colo base16-tomorrow-night
+    "colo base16-grayscale-dark
 
 
-"colo twilight
-"colo codeschool
-"colo zenburn
-"colo manuscript
-"colo slate
-"colo kiwi
-"colo earthsong
-"colo shrek
-"colo slime
-"colo solarized
-"set background=light
-"colo clarity
-"colo desertEx
-"colo colorsbox-material
-colo desert
+    "let g:hybrid_custom_term_colors = 1
+    "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+    "colorscheme hybrid
+else
+    "colo lucius
+    colo hybrid
+    "colo hybrid-light
+endif
+
+
 
 
     let g:syntastic_mode_map = { 'mode': 'passive',
@@ -85,6 +106,8 @@ colo desert
                                \ 'passive_filetypes': [] }
 "Open CtrlP with MRU mode
 nnoremap <F5> :CtrlPMRUFiles<CR>
+nnoremap <F8> :TagbarToggle<CR>
+nnoremap <F6> :colo base16-
 
 " minimalistic, distraction free coding
 set guioptions=
@@ -102,3 +125,11 @@ set laststatus=0
 " for tabswitching
 "nnoremap L gt<CR>
 "noremap H gT<CR>
+
+"let g:AutoPairs = {}
+
+" Adding this because for just for one py file tagbar isn't working
+autocmd BufEnter *.py :setlocal filetype=python
+set autoread
+
+

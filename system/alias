@@ -1,4 +1,5 @@
 alias ll='ls -lhtr'
+alias la='exa  -la'
 alias newest='ls -t | head -1'
 alias o='less'
 
@@ -11,3 +12,9 @@ alias gd='git diff '
 alias gst='git status '
 alias grv='git remote -v '
 alias gcom='git commit -am '
+alias gl='git log-latest '
+alias v='vim '
+alias t='tree'
+alias gll='git log-fancy'
+alias r='trash '
+
