@@ -1,0 +1,6 @@
+## Apps to be installed after fresh distro installation
+ctags
+git
+
+#gvim
+vim-gnome 

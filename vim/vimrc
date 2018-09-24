@@ -1,0 +1,154 @@
+set nocompatible              " be iMproved, required
+
+"Plug plugins
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-sensible'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'Shougo/deoplete.nvim'
+
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'zenbro/mirror.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+"Completion
+
+call plug#end()
+
+"" I use this with spf13
+"use system clipboard
+set clipboard=unnamedplus "linux
+
+let mapleader = " "
+
+"new tab
+nnoremap <leader>t :tabnew<CR>
+"delete current buffer
+nnoremap <leader>d :bdelete<CR>
+
+" FuGitive
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
+
+"Mirror plugin shortcuts
+nnoremap <leader>M :MirrorPull<CR>
+nnoremap <leader>m :MirrorPush<CR>
+
+
+nnoremap <leader>l :Limelight!<CR>
+
+"Ctrl+S to save
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
+
+nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
+noremap <leader>w :update<CR>
+
+"useful(important) maps
+nnoremap ; :
+nnoremap : :
+inoremap jj <Esc>
+
+set wrap
+"autocmd BufEnter * silent! lcd %:p:h
+set autochdir
+let NERDTreeChDirMode=2
+nnoremap <leader>n :NERDTree .<CR>
+nnoremap <C-E> :NERDTreeToggle .<CR>
+
+let g:pymode_lint = 0
+
+"This unsets the "last search pattern" register by hitting return
+"nnoremap <CR> :noh<CR><CR>
+
+set nohlsearch
+
+set nospell
+
+" hide line no.s
+set nonu
+set linespace=1
+
+set guifont=DejaVu\ Sans\ Mono\ 9
+"set guifont=Inconsolata\ Medium\ 12
+"set guifont=Fira\ Mono\ 10
+"set guifont=Liberation\ Mono\ 9
+
+"guifont=Source Code Pro Medium 10
+
+if has('gui_running')
+    "colo twilight
+    "colo codeschool
+    "colo zenburn
+    "colo zazen
+    "colo manuscript
+    "colo slate
+    "colo kiwi
+    "colo earthsong
+    "colo shrek
+    "colo slime
+    "colo solarized
+    "set background=light
+    "colo clarity
+    "colo desertEx
+    "colo colorsbox-material
+    "colo colorsbox-stnight
+    "colo desert
+    "colo mustang
+    "colo twilight
+    "colo hybrid
+    " colo Tomorrow-Night
+    colo base16-tomorrow-night
+    "colo base16-grayscale-dark
+
+
+    "let g:hybrid_custom_term_colors = 1
+    "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+    "colorscheme hybrid
+else
+    "colo lucius
+    colo default
+    "colo hybrid-light
+endif
+
+
+
+
+    let g:syntastic_mode_map = { 'mode': 'passive',
+                               \ 'active_filetypes': [],
+                               \ 'passive_filetypes': [] }
+"Open CtrlP with MRU mode
+nnoremap <F5> :CtrlPMRUFiles<CR>
+nnoremap <F8> :TagbarToggle<CR>
+nnoremap <F6> :colo base16-
+
+" minimalistic, distraction free coding
+set guioptions=
+
+" are these lines really needed ?
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+"very basic statusline
+set laststatus=0
+
+" In absence of spf13, 
+" for tabswitching
+"nnoremap L gt<CR>
+"noremap H gT<CR>
+
+"let g:AutoPairs = {}
+
+" Adding this because for just for one py file tagbar isn't working
+autocmd BufEnter *.py :setlocal filetype=python
+set autoread
+
+
