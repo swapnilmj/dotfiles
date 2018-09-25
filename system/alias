@@ -1,7 +1,9 @@
 alias ll='ls -lhtr'
 alias la='exa  -la'
+alias l='k '
 alias newest='ls -t | head -1'
-alias o='less'
+#alias o='less'
+alias o='bat --theme TwoDark  -p '
 
 #Python
 alias pyact='. bin/activate'
@@ -17,4 +19,5 @@ alias v='vim '
 alias t='tree'
 alias gll='git log-fancy'
 alias r='trash '
+alias f='ranger '
 
