@@ -1,4 +1,12 @@
 set nocompatible              " be iMproved, required
+" Indentation
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
 
 "Plug plugins
 call plug#begin('~/.vim/plugged')
@@ -15,6 +23,10 @@ Plug 'zenbro/mirror.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+Plug 'mileszs/ack.vim'
+Plug 'rstacruz/sparkup'
+Plug 'morhetz/gruvbox'
+"Plug 'w0rp/ale'
 "Completion
 
 call plug#end()
@@ -54,6 +66,9 @@ noremap <leader>w :update<CR>
 nnoremap ; :
 nnoremap : :
 inoremap jj <Esc>
+
+nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+nnoremap Y y$
 
 set wrap
 "autocmd BufEnter * silent! lcd %:p:h
@@ -106,7 +121,8 @@ if has('gui_running')
     " colo Tomorrow-Night
     colo base16-tomorrow-night
     "colo base16-grayscale-dark
-
+    "colo gruvbox
+    
 
     "let g:hybrid_custom_term_colors = 1
     "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
@@ -142,8 +158,8 @@ set laststatus=0
 
 " In absence of spf13, 
 " for tabswitching
-"nnoremap L gt<CR>
-"noremap H gT<CR>
+nnoremap L gt<CR>
+noremap H gT<CR>
 
 "let g:AutoPairs = {}
 
@@ -151,4 +167,8 @@ set laststatus=0
 autocmd BufEnter *.py :setlocal filetype=python
 set autoread
 
+" Search related
+set ignorecase
+set smartcase
+set incsearch
 
