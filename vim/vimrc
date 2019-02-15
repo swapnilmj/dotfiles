@@ -45,6 +45,7 @@ nnoremap <leader>d :bdelete<CR>
 " FuGitive
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gg :Gtabedit : \| set previewwindow<CR>
 
 "Mirror plugin shortcuts
 nnoremap <leader>M :MirrorPull<CR>
