@@ -7,6 +7,7 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+set shortmess+=A
 
 "Plug plugins
 call plug#begin('~/.vim/plugged')
@@ -25,11 +26,35 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'rstacruz/sparkup'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
+"Plug 'philips/meink.vim'
+Plug 'fxn/vim-monochrome'
+"Plug 'jacoborus/tender.vim'
+"Plug 'KKPMW/sacredforest-vim'
+Plug 'udalov/kotlin-vim'
+"Plug 'davidoc/todo.txt-vim'
+Plug 'freitass/todo.txt-vim'
+Plug 'ludovicchabant/vim-gutentags'
+
+Plug 'ayu-theme/ayu-vim'
+Plug 'reedes/vim-colors-pencil'
+
+set termguicolors     " enable true colors support
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+"colorscheme ayu
+
+"Plug 'sindresorhus/focus'
+"Plug 'sindresorhus/focus', {'rtp': 'vim'}
 "Plug 'w0rp/ale'
 "Completion
 
 call plug#end()
+
+"Use ag instead of ack
+let g:ackprg = 'ag --vimgrep --smart-case'
+
 
 "" I use this with spf13
 "use system clipboard
@@ -51,6 +76,9 @@ nnoremap <leader>gg :Gtabedit : \| set previewwindow<CR>
 nnoremap <leader>M :MirrorPull<CR>
 nnoremap <leader>m :MirrorPush<CR>
 
+"Pane navigation
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-l> <C-w><C-l>
 
 nnoremap <leader>l :Limelight!<CR>
 
@@ -59,7 +87,6 @@ noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
 
-nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
 noremap <leader>w :update<CR>
 
@@ -78,6 +105,9 @@ let NERDTreeChDirMode=2
 nnoremap <leader>n :NERDTree .<CR>
 nnoremap <C-E> :NERDTreeToggle .<CR>
 
+command!          MenuToggle             if &go=~'m'|set go-=m|else|set go+=m|endif
+nnoremap <C-M> :MenuToggle <CR>
+
 let g:pymode_lint = 0
 
 "This unsets the "last search pattern" register by hitting return
@@ -92,8 +122,9 @@ set nonu
 set linespace=1
 
 set guifont=DejaVu\ Sans\ Mono\ 9
-"set guifont=Inconsolata\ Medium\ 12
-"set guifont=Fira\ Mono\ 10
+"set guifont=Inconsolata\ Medium\ 11
+"set guifont=Source\ Code\ Pro\ 10
+"set guifont=Fira\ Mono\ Regular\ 9
 "set guifont=Liberation\ Mono\ 9
 
 "guifont=Source Code Pro Medium 10
@@ -120,21 +151,26 @@ if has('gui_running')
     "colo twilight
     "colo hybrid
     " colo Tomorrow-Night
-    colo base16-tomorrow-night
+    "colo base16-tomorrow-night
     "colo base16-grayscale-dark
-    "colo gruvbox
+    colo base16-gruvbox-dark-medium
+    "colo tender
     
+
+    "let g:gruvbox_italic=1 
+    "set background=dark
+    "let g:gruvbox_contrast_dark='medium'
+    "colo gruvbox
 
     "let g:hybrid_custom_term_colors = 1
     "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
     "colorscheme hybrid
 else
     "colo lucius
-    colo default
+    "colo default
+    colo base16-gruvbox-dark-medium
     "colo hybrid-light
 endif
-
-
 
 
     let g:syntastic_mode_map = { 'mode': 'passive',
@@ -142,8 +178,9 @@ endif
                                \ 'passive_filetypes': [] }
 "Open CtrlP with MRU mode
 nnoremap <F5> :CtrlPMRUFiles<CR>
+nnoremap <F6> :CtrlPTag <CR>
 nnoremap <F8> :TagbarToggle<CR>
-nnoremap <F6> :colo base16-
+"nnoremap <F6> :colo base16-
 
 " minimalistic, distraction free coding
 set guioptions=
