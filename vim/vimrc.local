@@ -20,6 +20,10 @@ nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>M :MirrorPull<CR>
 nnoremap <leader>m :MirrorPush<CR>
 
+"Pane navigation
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-l> <C-w><C-l>
+
 
 nnoremap <leader>l :Limelight!<CR>
 

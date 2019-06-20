@@ -34,10 +34,16 @@ Plug 'fxn/vim-monochrome'
 Plug 'udalov/kotlin-vim'
 "Plug 'davidoc/todo.txt-vim'
 Plug 'freitass/todo.txt-vim'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'ayu-theme/ayu-vim'
 Plug 'reedes/vim-colors-pencil'
+"Plug 'keith/parsec.vim'
+"Plug 'sts10/vim-pink-moon'
+"Plug 'altercation/vim-colors-solarized'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 set termguicolors     " enable true colors support
 "let ayucolor="light"  " for light version of theme
@@ -153,8 +159,16 @@ if has('gui_running')
     " colo Tomorrow-Night
     "colo base16-tomorrow-night
     "colo base16-grayscale-dark
-    colo base16-gruvbox-dark-medium
+    "colo base16-gruvbox-dark-medium
+    "colo base16-gruvbox-dark-hard
+
     "colo tender
+    
+    "let ayucolor="light"  " for light version of theme
+    "let ayucolor="mirage" " for mirage version of theme
+    "let ayucolor="dark"   " for dark version of theme
+    "colorscheme ayu
+    
     
 
     "let g:gruvbox_italic=1 
@@ -168,10 +182,15 @@ if has('gui_running')
 else
     "colo lucius
     "colo default
-    colo base16-gruvbox-dark-medium
+    "colo base16-gruvbox-dark-medium
     "colo hybrid-light
 endif
 
+"colo base16-solarized-dark
+colo base16-tomorrow-night
+
+"let g:airline_solarized_bg='dark'
+let g:airline_theme='tomorrow'
 
     let g:syntastic_mode_map = { 'mode': 'passive',
                                \ 'active_filetypes': [],
@@ -181,6 +200,8 @@ nnoremap <F5> :CtrlPMRUFiles<CR>
 nnoremap <F6> :CtrlPTag <CR>
 nnoremap <F8> :TagbarToggle<CR>
 "nnoremap <F6> :colo base16-
+
+let g:ale_python_auto_pipenv = 1
 
 " minimalistic, distraction free coding
 set guioptions=
@@ -192,7 +213,7 @@ set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
 "very basic statusline
-set laststatus=0
+"set laststatus=0
 
 " In absence of spf13, 
 " for tabswitching
