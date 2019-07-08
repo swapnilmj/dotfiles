@@ -31,9 +31,12 @@
     l          = log
     # Same as log-latest
     ll  = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative --all
-	appraise = !/home/sjoshi/.go/bin/git-appraise
+	appraise = !/home/sjoshi/go//bin/git-appraise
 
 [diff]
     #external = /home/swapnil/diff.py
 [color]
 	ui = auto
+[user]
+	email = sjoshi@virtela.net
+	name = sjoshi

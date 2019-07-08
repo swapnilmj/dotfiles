@@ -21,8 +21,15 @@ alias v='vim '
 alias t='tree'
 alias gll='git log-fancy'
 alias r='trash '
-alias f='ranger '
+alias f='ranger-cd '
 alias gl='git status|fpp -c "pylint -E "'
 alias apts='apt search '
 alias e='gvim '
 alias igrep='grep -i '
+alias sqlindent='sqlformat - -r'
+
+
+#function rg()
+#{
+   #rg -p "$@" | less -R
+#}

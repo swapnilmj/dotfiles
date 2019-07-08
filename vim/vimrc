@@ -114,7 +114,7 @@ nnoremap <C-E> :NERDTreeToggle .<CR>
 command!          MenuToggle             if &go=~'m'|set go-=m|else|set go+=m|endif
 nnoremap <C-M> :MenuToggle <CR>
 
-let g:pymode_lint = 0
+"let g:pymode_lint = 1
 
 "This unsets the "last search pattern" register by hitting return
 "nnoremap <CR> :noh<CR><CR>
@@ -201,7 +201,10 @@ nnoremap <F6> :CtrlPTag <CR>
 nnoremap <F8> :TagbarToggle<CR>
 "nnoremap <F6> :colo base16-
 
-let g:ale_python_auto_pipenv = 1
+"let g:ale_python_auto_pipenv = 1
+"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 
 " minimalistic, distraction free coding
 set guioptions=
