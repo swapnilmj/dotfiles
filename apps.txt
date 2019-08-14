@@ -1,6 +1,11 @@
-## Apps to be installed after fresh distro installation
+## Apps to be installed after a fresh distro installation
 ctags
 git
 
 #gvim
 vim-gnome 
+
+diff-so-fancy (https://github.com/so-fancy/diff-so-fancy)
+meld
+oh-my-zsh https://github.com/robbyrussell/oh-my-zsh
+
