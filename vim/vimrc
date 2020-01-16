@@ -223,6 +223,11 @@ set guioptions-=L  "remove left-hand scroll bar
 nnoremap L gt<CR>
 noremap H gT<CR>
 
+" Visually select round and square brackets
+nnoremap vir vi(
+nnoremap vis vi[
+nnoremap vic vi{
+
 "let g:AutoPairs = {}
 
 " Adding this because for just for one py file tagbar isn't working
