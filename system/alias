@@ -18,7 +18,7 @@ alias grv='git remote -v '
 alias gcom='git commit -am '
 #alias gl='git log-latest '
 alias v='vim '
-alias t='tree'
+#alias t='tree'
 alias gll='git log-fancy'
 alias r='trash '
 alias f='ranger-cd '
@@ -28,6 +28,17 @@ alias e='gvim '
 alias igrep='grep -i '
 alias sqlindent='sqlformat - -r'
 
+alias t='todo-txt '
+alias tl='todo-txt ls'
+
+#alias epoch2date='date -d @'
+
+
+function epoch2date()
+{
+    date -d @"$1"
+
+}
 
 #function rg()
 #{
