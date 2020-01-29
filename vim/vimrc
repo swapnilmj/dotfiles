@@ -239,3 +239,4 @@ set ignorecase
 set smartcase
 set incsearch
 
+autocmd VimResized * wincmd =
