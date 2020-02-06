@@ -240,3 +240,6 @@ set smartcase
 set incsearch
 
 autocmd VimResized * wincmd =
+
+" For terminal(nvim)
+set mouse=a
