@@ -95,6 +95,9 @@ inoremap <silent> <C-S>         <C-O>:update<CR>
 
 
 noremap <leader>w :update<CR>
+noremap <leader>o o<Esc>
+noremap <leader>O O<Esc>
+
 
 "useful(important) maps
 nnoremap ; :
