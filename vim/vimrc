@@ -246,3 +246,6 @@ autocmd VimResized * wincmd =
 
 " For terminal(nvim)
 set mouse=a
+
+" terminal mode
+tnoremap <Esc> <C-\><C-n>
