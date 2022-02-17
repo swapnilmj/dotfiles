@@ -99,13 +99,19 @@ noremap <leader>o o<Esc>
 noremap <leader>O O<Esc>
 
 
-"useful(important) maps
+"Useful(important) maps
 nnoremap ; :
 nnoremap : :
 inoremap jj <Esc>
 
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 nnoremap Y y$
+
+"Delete, don't Cut
+nnoremap x "_x
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
 
 set wrap
 "autocmd BufEnter * silent! lcd %:p:h
