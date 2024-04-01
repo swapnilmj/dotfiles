@@ -1,43 +1,92 @@
 set nocompatible              " be iMproved, required
+
+" Switching this off TEMP for bulkcm
 " Indentation
-filetype plugin indent on
+"filetype plugin indent on
+
 " show existing tab with 4 spaces width
 set tabstop=4
 " when indenting with '>', use 4 spaces width
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+
+set signcolumn=yes              " for vim-signify
+
 set shortmess+=A
+set title
 
 "Plug plugins
 call plug#begin('~/.vim/plugged')
 
+"Plug 'dstein64/vim-startuptime' 
+
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
+
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'Shougo/deoplete.nvim'
+"Plug 'Shougo/deoplete.nvim'
 
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'zenbro/mirror.vim'
+"Plug 'zenbro/mirror.vim'
 Plug 'chriskempson/base16-vim'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
-Plug 'mileszs/ack.vim'
+"Plug 'mileszs/ack.vim'
 Plug 'rstacruz/sparkup'
-"Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 "Plug 'philips/meink.vim'
-Plug 'fxn/vim-monochrome'
+"Plug 'fxn/vim-monochrome'
 "Plug 'jacoborus/tender.vim'
 "Plug 'KKPMW/sacredforest-vim'
-Plug 'udalov/kotlin-vim'
-"Plug 'davidoc/todo.txt-vim'
-Plug 'freitass/todo.txt-vim'
-"Plug 'ludovicchabant/vim-gutentags'
 
-Plug 'ayu-theme/ayu-vim'
-Plug 'reedes/vim-colors-pencil'
+"Plug 'neovim/nvim-lspconfig' " The most important plugin
+"Plug 'nvim-lua/completion-nvim' " sets up async autocomplete for LSP
+"Plug 'nvim-treesitter/completion-treesitter' " tree-sitter source for completion-nvim
+Plug 'mhinz/vim-signify' " display VCS diff in signcolumn and navigate VCS chunks
+
+"Plug 'ajmwagar/vim-deus'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/goyo.vim'
+
+"Plug 'udalov/kotlin-vim'
+"Plug 'davidoc/todo.txt-vim'
+"Plug 'freitass/todo.txt-vim'
+"Plug 'ludovicchabant/vim-gutentags'
+"Plug 'spolu/dwm.vim'
+Plug 'KabbAmine/vCoolor.vim'	
+"Plug 'severin-lemaignan/vim-minimap'
+"Plug 'wellle/context.vim'
+
+let g:context_enabled = 0 
+
+
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+"Plug 'chentau/marks.nvim'
+"Plug 'junegunn/limelight.vim'
+
+
+" Track the engine.
+Plug 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
+
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+"Plug 'NLKNguyen/papercolor-theme'
+
+"Plug 'ayu-theme/ayu-vim'
+"Plug 'reedes/vim-colors-pencil'
 "Plug 'keith/parsec.vim'
 "Plug 'sts10/vim-pink-moon'
 "Plug 'altercation/vim-colors-solarized'
@@ -45,7 +94,27 @@ Plug 'reedes/vim-colors-pencil'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+
+
+Plug 'chentoast/marks.nvim'
+
+" Neovim's builtin LSP and treesitter impl. make it a very lightweight IDE
+Plug 'neovim/nvim-lspconfig' " The most important plugin
+"Plug 'nvim-treesitter/nvim-treesitter' " tree-sitter support
+" Completion sources
+Plug 'nvim-lua/completion-nvim' " sets up async autocomplete for LSP
+"Plug 'nvim-treesitter/completion-treesitter' " tree-sitter source for completion-nvim
+
+"Plug 'fneu/breezy'
+
+Plug 'akinsho/git-conflict.nvim'
+
 set termguicolors     " enable true colors support
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 "let ayucolor="light"  " for light version of theme
 "let ayucolor="mirage" " for mirage version of theme
 "let ayucolor="dark"   " for dark version of theme
@@ -56,31 +125,74 @@ set termguicolors     " enable true colors support
 "Plug 'w0rp/ale'
 "Completion
 
+
+Plug 'norcalli/nvim-colorizer.lua'
+
+Plug 'terryma/vim-expand-region' " syntax-aware expansion of visually-selected area
+
+" Looks useful. Need to explore tho.
+"Plug 'nvim-tree/nvim-web-devicons' " OPTIONAL: for file icons
+"Plug 'romgrk/barbar.nvim'
+
 call plug#end()
 
 "Use ag instead of ack
-let g:ackprg = 'ag --vimgrep --smart-case'
+let g:ackprg = 'rg --vimgrep --smart-case'
 
+set grepprg=rg\ --vimgrep\ $*
+set grepformat=%f:%l:%c:%m
+
+"use system clipboard
+if has('clipboard')
+    if has('unnamedplus') " When possible use + register for copy-paste
+        set clipboard=unnamed,unnamedplus
+    else " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    endif
+endif
 
 "" I use this with spf13
 "use system clipboard
-set clipboard=unnamedplus "linux
+"set clipboard=unnamedplus "linux
 
 let mapleader = " "
+
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
 
 "new tab
 nnoremap <leader>t :tabnew<CR>
 "delete current buffer
 nnoremap <leader>d :bdelete<CR>
 
+nnoremap <leader>m :Marks<CR>
+nnoremap <leader>f <cmd>Files<CR>
+
+"nnoremap <leader>j :Telescope jumplist<CR>
+nnoremap <leader>p :set paste!<CR>
+nnoremap <leader>n :set number!<CR>
+
 " FuGitive
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gg :Gtabedit : \| set previewwindow<CR>
+nnoremap <leader>gs :Git status<CR>
+nnoremap <leader>gd :Git diff<CR>
+nnoremap <leader>gb :Git blame<CR>
+
+" ???
+nnoremap <leader>gg :Git tabedit : \| set previewwindow<CR>   
+
+nnoremap <leader>cp :ContextPeek<CR>
+nnoremap <leader>ct :ContextToggle<CR>
+
+
+nnoremap <leader>st :SignifyToggle<CR>
+nnoremap <leader>ls :source ./Session.vim<CR>
+nnoremap <leader>ms :mksession!<CR>
+
 
 "Mirror plugin shortcuts
-nnoremap <leader>M :MirrorPull<CR>
-nnoremap <leader>m :MirrorPush<CR>
+"nnoremap <leader>M :MirrorPull<CR>
+"nnoremap <leader>m :MirrorPush<CR>
 
 "Pane navigation
 nnoremap <C-h> <C-w><C-h>
@@ -98,31 +210,32 @@ noremap <leader>w :update<CR>
 noremap <leader>o o<Esc>
 noremap <leader>O O<Esc>
 
+noremap <leader>c :Colors<CR>
 
-"Useful(important) maps
+
+"useful(important) maps
 nnoremap ; :
 nnoremap : :
+nnoremap xx Vx
 inoremap jj <Esc>
+inoremap jk <Esc>
 
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 nnoremap Y y$
-
-"Delete, don't Cut
-nnoremap x "_x
-nnoremap d "_d
-nnoremap D "_D
-vnoremap d "_d
 
 set wrap
 "autocmd BufEnter * silent! lcd %:p:h
 set autochdir
 let NERDTreeChDirMode=2
-nnoremap <leader>n :NERDTree .<CR>
+"nnoremap <leader>n :NERDTree .<CR>
 nnoremap <C-E> :NERDTreeToggle .<CR>
 
 command!          MenuToggle             if &go=~'m'|set go-=m|else|set go+=m|endif
 nnoremap <C-M> :MenuToggle <CR>
 
+"nnoremap <leader>b iimport pdb;pdb.set_trace()<CR><Esc>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>B iimport pudb;pu.db<CR><Esc>
 "let g:pymode_lint = 1
 
 "This unsets the "last search pattern" register by hitting return
@@ -136,14 +249,15 @@ set nospell
 set nonu
 set linespace=1
 
-set guifont=DejaVu\ Sans\ Mono\ 9
+"set guifont=DejaVu\ Sans\ Mono\ 9
 "set guifont=Inconsolata\ Medium\ 11
 "set guifont=Source\ Code\ Pro\ 10
-"set guifont=Fira\ Mono\ Regular\ 9
+set guifont=Fira\ Code\ Regular\ 9
 "set guifont=Liberation\ Mono\ 9
 
 "guifont=Source Code Pro Medium 10
 
+set background=dark
 if has('gui_running')
     "colo twilight
     "colo codeschool
@@ -197,6 +311,8 @@ endif
 
 "colo base16-solarized-dark
 colo base16-tomorrow-night
+"colo base16-gruvbox-dark-hard
+"colo gruvbox
 
 "let g:airline_solarized_bg='dark'
 let g:airline_theme='tomorrow'
@@ -205,9 +321,14 @@ let g:airline_theme='tomorrow'
                                \ 'active_filetypes': [],
                                \ 'passive_filetypes': [] }
 "Open CtrlP with MRU mode
+nnoremap <F2> :Lines<CR>
+nnoremap <F3> :Rg<CR>
 nnoremap <F5> :CtrlPMRUFiles<CR>
 nnoremap <F6> :CtrlPTag <CR>
 nnoremap <F8> :TagbarToggle<CR>
+
+let g:goyo_width = 120
+nnoremap <F11> :Goyo<CR>
 "nnoremap <F6> :colo base16-
 
 "let g:ale_python_auto_pipenv = 1
@@ -229,18 +350,22 @@ set guioptions-=L  "remove left-hand scroll bar
 
 " In absence of spf13, 
 " for tabswitching
+"unmap H 
 nnoremap L gt<CR>
 noremap H gT<CR>
+"noremap B gT<CR>  " H isn't working for some reason
 
-" Visually select round and square brackets
 nnoremap vir vi(
 nnoremap vis vi[
 nnoremap vic vi{
+"Save session and quit WIP
+"nnoremap MZ :mks | :wq <CR>
 
 "let g:AutoPairs = {}
 
 " Adding this because for just for one py file tagbar isn't working
 autocmd BufEnter *.py :setlocal filetype=python
+autocmd BufEnter *.jinja :setlocal filetype=htmldjango
 set autoread
 
 " Search related
@@ -252,6 +377,44 @@ autocmd VimResized * wincmd =
 
 " For terminal(nvim)
 set mouse=a
+"set ttymouse=sgr
 
-" terminal mode
-tnoremap <Esc> <C-\><C-n>
+set lz
+set foldmethod=indent   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+
+" Do math. Copies expr to clipboard
+ino <C-A> <C-O>yiW<End>=<C-R>=<C-R>0<CR>
+
+
+if argc()==0
+    " Open ctrl+p on startup
+     "autocmd VimEnter * CtrlPMRUFiles
+endif
+
+" Pyright LSP configuration
+"if has('nvim')
+  "augroup lsp_python
+    "au!
+    "au FileType python lua require'lspconfig'.pyright.setup{}
+  "augroup END
+"endif
+"
+
+
+" Add thin border to visual selection
+"augroup VisualSelection
+    "autocmd!
+    ""autocmd TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=200})
+    "autocmd TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch"})
+"augroup END
+
+
+" Add thin border to visual selection
+"augroup VisualSelection
+    "autocmd!
+    "autocmd VimEnter,WinEnter,BufWinEnter * highlight Visual ctermbg=yellow guibg=orange
+    "autocmd WinLeave * highlight Visual ctermbg=NONE guibg=NONE
+"augroup END
